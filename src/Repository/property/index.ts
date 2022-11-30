@@ -312,6 +312,9 @@ export class PropertyRepository
   };
   fetchPrivateListings = async (pmId: string): Promise<Property[]> => {
     const listings = await this.client.property.findMany({
+      where:{
+        managerId:pmId
+      },
       include: {
         manager: {
           include: {
@@ -330,11 +333,6 @@ export class PropertyRepository
               },
             },
           },
-        },
-      },
-      where: {
-        managerId: {
-          equals: pmId,
         },
       },
     });
