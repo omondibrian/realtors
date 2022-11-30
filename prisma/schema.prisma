@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  email           String           @unique
+  password        String
+  phoneNumber     String
+  profileImage    String
+  token           String?          @unique
+  createdAt       DateTime         @default(now())
+  placementDate   DateTime         @default(now())
+  accountStatus   Boolean          @default(false)
+  role            Role             @default(Tenant)
+  propertyManager PropertyManager?
+  tenant          Tenants?
+  paymentDetails  PaymentDetails?
+}
+
+model PropertyManager {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String     @unique @db.ObjectId
+  createdAt  DateTime   @default(now())
+  user       User?      @relation(fields: [userId], references: [id])
+  properties Property[]
+}
+
+model Tenants {
+  id               String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String        @unique @db.ObjectId
+  createdAt        DateTime      @default(now())
+  currentResidency UnitOccupant?
+  lat              Float
+  long             Float
+  user             User?         @relation(fields: [userId], references: [id])
+}
+
+model PaymentDetails {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @unique @db.ObjectId
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model Property {
+  id          String          @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  imageUrl    String
+  phoneNumber String
+  contact     String
+  lat         Float
+  long        Float
+  managerId   String          @db.ObjectId
+  units       Unit[]
+  createdAt   DateTime        @default(now())
+  manager     PropertyManager @relation(fields: [managerId], references: [userId])
+}
+
+model Unit {
+  id               String        @id @default(auto()) @map("_id") @db.ObjectId
+  room             String
+  imageUrl         String
+  contact          String
+  state            Boolean       @default(false)
+  livingSpace      String
+  pricePerMonth    String
+  propertyOverview String[]
+  contractUrl      String?
+  bedRooms         Int           @default(1)
+  baths            Int           @default(1)
+  ratings          Int           @default(0)
+  type             UnitType      @default(Normal)
+  ammenities       String[]
+  propertyId       String        @db.ObjectId
+  createdAt        DateTime      @default(now())
+  property         Property      @relation(fields: [propertyId], references: [id])
+  occupiedBy       UnitOccupant?
+}
+
+model UnitOccupant {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  unitId     String  @unique @db.ObjectId
+  tenantId   String  @unique @db.ObjectId
+  isOccupied Boolean @default(true)
+  unit       Unit    @relation(fields: [unitId], references: [id])
+  tenant     Tenants @relation(fields: [tenantId], references: [id])
+}
+
+model PasswordResets {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  token     String
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  PropertyManager
+  Tenant
+}
+
+enum UnitType {
+  Luxurious
+  Normal
+  budget
+}
