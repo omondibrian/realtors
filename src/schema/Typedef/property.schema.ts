@@ -44,8 +44,7 @@ const PropertyTypeDefs = `#graphql
       books: [Book]
       #fetch unoccupied listings
       fetchPublicListings:ListingsResult!
-      myListings:[Property!]!
-    }
+      myListings:ListingsResult!    }
 
     type PropertyUpdate{
         name:String!
