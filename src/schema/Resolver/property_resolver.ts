@@ -106,8 +106,24 @@ export const PropertyResolver = {
       }
      
     },
-    myListings: async (_:any,args:{}): Promise<PropertyResults> => {
-      throw new Error("Method not implemented.");
+    myListings: async (_:any,args: any, context: MyContext): Promise<ListingsResult> => {
+      try {
+        const listings = await repo.fetchPrivateListings(context.UserId!);
+        // const {propertyUnits} = newListing;
+        console.log(listings);
+        const result: ListingsPayload = {
+          message: "your listings",
+          properties: listings,
+        };
+
+        return result;
+      } catch (error: any) {
+        console.log(error);
+        return {
+          errorMessage: "Error while processing Request ",
+          stack: error.stack,
+        };
+      }
     },
   },
   Mutation: {
