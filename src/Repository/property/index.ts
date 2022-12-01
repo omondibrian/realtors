@@ -126,7 +126,7 @@ export class PropertyRepository
           profileImage: results.manager.user?.profileImage!,
           role: results.manager.user?.role!,
           accountState: results.manager.user?.accountStatus!,
-          placementDate: results.manager.user?.placementDate.toTimeString()!,
+          placementDate: results.manager.user?.placementDate.toDateString()!,
           // id:results.manager.user?.id!,
         },
       },
@@ -185,7 +185,7 @@ export class PropertyRepository
                   role: u.occupiedBy?.tenant.user?.role!,
                   accountState: u.occupiedBy?.tenant.user?.accountStatus!,
                   placementDate:
-                    u.occupiedBy?.tenant.user?.placementDate.toTimeString()!,
+                    u.occupiedBy?.tenant.user?.placementDate.toDateString()!,
                 },
               }
             : null,
@@ -227,7 +227,7 @@ export class PropertyRepository
                     role: unit.occupiedBy?.tenant.user?.role!,
                     accountState: unit.occupiedBy?.tenant.user?.accountStatus!,
                     placementDate:
-                      unit.occupiedBy?.tenant.user?.placementDate.toTimeString()!,
+                      unit.occupiedBy?.tenant.user?.placementDate.toDateString()!,
                   },
                 }
               : null,
@@ -278,7 +278,7 @@ export class PropertyRepository
             profileImage: p.manager.user?.profileImage!,
             role: p.manager.user?.role!,
             accountState: p.manager.user?.accountStatus!,
-            placementDate: p.manager.user?.placementDate.toTimeString()!,
+            placementDate: p.manager.user?.placementDate.toDateString()!,
           },
         },
         propertyUnits: p.units.map((u): Unit => {
@@ -302,7 +302,7 @@ export class PropertyRepository
                 profileImage: p.manager.user?.profileImage!,
                 role: p.manager.user?.role!,
                 accountState: p.manager.user?.accountStatus!,
-                placementDate: p.manager.user?.placementDate.toTimeString()!,
+                placementDate: p.manager.user?.placementDate.toDateString()!,
               },
             },
           };
@@ -355,7 +355,7 @@ export class PropertyRepository
             profileImage: p.manager.user?.profileImage!,
             role: p.manager.user?.role!,
             accountState: p.manager.user?.accountStatus!,
-            placementDate: p.manager.user?.placementDate.toTimeString()!,
+            placementDate: p.manager.user?.placementDate.toDateString()!,
           },
         },
         propertyUnits: p.units.map((u): Unit => {
@@ -379,7 +379,7 @@ export class PropertyRepository
                 profileImage: p.manager.user?.profileImage!,
                 role: p.manager.user?.role!,
                 accountState: p.manager.user?.accountStatus!,
-                placementDate: p.manager.user?.placementDate.toTimeString()!,
+                placementDate: p.manager.user?.placementDate.toDateString()!,
               },
             },
           };
@@ -430,7 +430,7 @@ export class PropertyRepository
                 role: u.occupiedBy?.tenant.user?.role!,
                 accountState: u.occupiedBy?.tenant.user?.accountStatus!,
                 placementDate:
-                  u.occupiedBy?.tenant.user?.placementDate.toTimeString()!,
+                  u.occupiedBy?.tenant.user?.placementDate.toDateString()!,
               },
             },
     };
@@ -497,7 +497,7 @@ export class PropertyRepository
                     role: unit.occupiedBy?.tenant.user?.role!,
                     accountState: unit.occupiedBy?.tenant.user?.accountStatus!,
                     placementDate:
-                      unit.occupiedBy?.tenant.user?.placementDate.toTimeString()!,
+                      unit.occupiedBy?.tenant.user?.placementDate.toDateString()!,
                   },
                 }
               : null,
@@ -555,7 +555,7 @@ export class PropertyRepository
           profileImage: listing.manager.user?.profileImage!,
           role: listing.manager.user?.role!,
           accountState: listing.manager.user?.accountStatus!,
-          placementDate: listing.manager.user?.placementDate.toTimeString()!,
+          placementDate: listing.manager.user?.placementDate.toDateString()!,
         },
       },
       propertyUnits: listing.units.map((u): Unit => {
@@ -575,7 +575,7 @@ export class PropertyRepository
               role: listing.manager.user?.role!,
               accountState: listing.manager.user?.accountStatus!,
               placementDate:
-                listing.manager.user?.placementDate.toTimeString()!,
+                listing.manager.user?.placementDate.toDateString()!,
             },
           },
         };
@@ -629,7 +629,7 @@ export class PropertyRepository
           profileImage: res.tenant.user?.profileImage!,
           role: res.tenant.user?.role!,
           accountState: res.tenant.user?.accountStatus!,
-          placementDate: res.tenant.user?.placementDate.toTimeString()!,
+          placementDate: res.tenant.user?.placementDate.toDateString()!,
         },
       },
     };
@@ -675,7 +675,7 @@ export class PropertyRepository
           role: res.unit.occupiedBy?.tenant.user?.role!,
           accountState: res.unit.occupiedBy?.tenant.user?.accountStatus!,
           placementDate:
-            res.unit.occupiedBy?.tenant.user?.placementDate.toTimeString()!,
+            res.unit.occupiedBy?.tenant.user?.placementDate.toDateString()!,
         },
       },
     };
