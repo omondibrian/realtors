@@ -8,6 +8,7 @@ const UserTypeDefs = `#graphql
       role: String!
       placementDate: String!
       accountState: Boolean!
+      phoneNumber:String!
     }
     type AccountNotActive{
       userID: String!
